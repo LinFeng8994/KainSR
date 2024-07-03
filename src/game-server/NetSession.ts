@@ -120,6 +120,7 @@ export class NetSession {
             { req: CmdID.CmdGetArchiveDataCsReq, rsp: CmdID.CmdGetArchiveDataScRsp },
             { req: CmdID.CmdDressAvatarCsReq, rsp: CmdID.CmdDressAvatarScRsp },
             { req: CmdID.CmdTakeOffEquipmentCsReq, rsp: CmdID.CmdTakeOffEquipmentScRsp },
+            { req: CmdID.CmdRelicRecommendCsReq, rsp: CmdID.CmdRelicRecommendScRsp },
         ];
     }
 
