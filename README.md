@@ -31,6 +31,11 @@
 ```bash
 $ npm install
 ```
+## Proxy
+
+```bash
+$ you need run FireflySR.Tool.Proxy.exe in FireFly.Proxy.v2
+```
 
 ## Running the app
 
