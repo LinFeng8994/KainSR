@@ -31,36 +31,31 @@
 ```bash
 $ npm install
 ```
-## Proxy
+
+## 1, Auto case:
+```bash
+$ run file run.bat
+```
+
+## 2, Manual Case:
+
+## 2.1 Proxy
 
 ```bash
 $ you need run FireflySR.Tool.Proxy.exe in FireFly.Proxy.v2
 ```
 
-## Running the app
+## 2.2 Running the app
 
 ```bash
 # development
 $ npm run start
 
-# watch mode
-$ npm run start:dev
+# watch mode 
+$ npm run start:dev 
 
 # production mode
 $ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Support
