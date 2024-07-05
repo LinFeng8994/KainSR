@@ -52,6 +52,19 @@ export async function onGetBagCsReq (
 }
 
 
+export async function onGetBagCsReqNew (
+    body: any, 
+    player: NetSession,
+    dataModule: DataService | null = null
+){
+    const proto : starrail.GetBagScRsp = new starrail.GetBagScRsp({
+        equipmentList: [],
+        relicList: []
+    });
+    const bufferData = starrail.GetBagScRsp.encode(proto).finish()
+    await player.send(CmdID.CmdGetBagScRsp, bufferData);
+}
+
 export class UidGenerator {
     private currentId: number;
 

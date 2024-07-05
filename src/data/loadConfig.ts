@@ -101,8 +101,8 @@ function parseRelic(relicStr: string): Relic | null {
     };
 }
 
-export function readConfig(filePath: string): GameConfig | null {
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
+export async function readConfig(filePath: string): Promise<GameConfig> {
+    const fileContent = await fs.readFileSync(filePath, 'utf-8');
     const jsonData = JSON.parse(fileContent);
 
     const avatarConfig: Avatar[] = jsonData.avatar_config.map((avatar: any) => {

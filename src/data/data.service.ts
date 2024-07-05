@@ -23,8 +23,7 @@ export class DataService {
         this.dataVersion = JSON.parse(fileContentsVersion) as VersionConfig;
 
         //Game input
-        const filePathConfig = path.resolve(process.cwd(),'./src/data/config.json');
-        this.dataInGame = readConfig(filePathConfig)
+        this.updateDataInGame()
     }
 
     getVersionData(): VersionConfig {
@@ -37,6 +36,6 @@ export class DataService {
 
     async updateDataInGame() {
         const filePathConfig = path.resolve(process.cwd(),'./src/data/config.json');
-        this.dataInGame = readConfig(filePathConfig)
+        this.dataInGame = await readConfig(filePathConfig)
     }
 }
