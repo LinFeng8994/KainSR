@@ -10,5 +10,11 @@
         "ex_resource_url": "https://autopatchcn-ipv6.bhsr.com/design_data/BetaLive/output_7441503_fe09f8b8ab97",
         "lua_url": "https://autopatchcn-ipv6.bhsr.com/lua/BetaLive/output_7435198_cb6c7842da93",
         "lua_version": "7435198"
+    },
+    "OSBETAWin2.3.54": {
+        "asset_bundle_url": "https://autopatchos.starrails.com/asb/BetaLive/output_7487689_62686ba327cf",
+        "ex_resource_url": "https://autopatchos.starrails.com/design_data/BetaLive/output_7489291_74c449a9d17d",
+        "lua_url": "https://autopatchos.starrails.com/lua/BetaLive/output_7488079_6bc8bfcb7d05",
+        "lua_version": "7488079"
     }
 }

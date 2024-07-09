@@ -2,7 +2,7 @@ import { starrail } from 'src/proto/starrail';
 import { NetSession } from "../NetSession"
 import { CmdID } from 'src/proto/cmdId';
 import { DataService } from 'src/data/data.service';
-import { onGetAvatarDataCsReq, onGetAvatarDataCsReqNew, onGetAvatarDataCsReqReset, onGetBagCsReq, onGetBagCsReqNew, onGetCurLineupDataCsReq } from '.';
+import { onGetAvatarDataCsReq, onGetAvatarDataCsReqNew, onGetBagCsReq, onGetBagCsReqNew, onGetCurLineupDataCsReq } from '.';
 
 export async function onGetFriendListInfoCsReq(
     body: any,
@@ -46,8 +46,8 @@ export async function onSendMsgCsReq(
         await onGetAvatarDataCsReqNew(new starrail.GetAvatarDataCsReq({isGetAll: false}), player, dataModule)
         await onGetBagCsReqNew({}, player, dataModule)
         await onGetCurLineupDataCsReq({}, player, dataModule)
-        await onGetAvatarDataCsReqReset(new starrail.GetAvatarDataCsReq({isGetAll: false}), player, dataModule)
         await onGetBagCsReq({}, player, dataModule)
+        await onGetAvatarDataCsReq(new starrail.GetAvatarDataCsReq({isGetAll: true}), player, dataModule)
     }
 
     const proto: starrail.SendMsgScRsp = new starrail.SendMsgScRsp({
