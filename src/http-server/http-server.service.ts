@@ -25,12 +25,18 @@ export class HttpServerService {
     }
 
     async getGatewayService(versions : string) {
-        const dataVersion : VersionConfig = this.dataService.getVersionData()
+        let dataVersion : VersionConfig = this.dataService.getVersionData()
         if (!dataVersion[versions]) {
-            throw new ForbiddenException(
-                'This version does not exist',
-            );
+            if (await this.dataService.autoUpdateVersion(versions)){
+                dataVersion = this.dataService.getVersionData()
+            }
+            else {
+                throw new ForbiddenException(
+                    'This version does not exist',
+                );
+            }
         }
+        
         const proto : starrail.Gateserver = new starrail.Gateserver({
             retcode : 0,
             ip: "127.0.0.1",
@@ -51,7 +57,7 @@ export class HttpServerService {
         });
         const buffer = starrail.Gateserver.encode(proto).finish();
         return Buffer.from(buffer).toString("base64");
-        // return this.dataService.decodeMessageToBase64("Gateserver", proto)
+
     }
 
     async loginWithAnyService() {
