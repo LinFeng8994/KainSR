@@ -35,7 +35,7 @@ export async function onGetCurSceneInfoCsReq(
         scene_info.sceneGroupList.push(scene_group)
     }
 
-    {
+    { // Calyx prop
         const scene_group: starrail.SceneGroupInfo = new starrail.SceneGroupInfo()
         scene_group.state = 1;
         scene_group.groupId = 186;
@@ -76,7 +76,16 @@ export async function onSceneEntityMoveCsReq(
 ) {
     // for (let i = 0; i < body.entityMotionList.length; i++) {
     //     if (body.entityMotionList[i].motion) {
-    //         console.log(`[POSITION] entity_id: ${body.entityMotionList[i].entityId}, motion: ${body.entityMotionList[i].motion}}`)
+    //         console.log(`
+    //             [POSITION] entity_id: ${body.entityMotionList[i].entityId}, 
+    //             posX: ${body.entityMotionList[i].motion.pos.x}, 
+    //             posY: ${body.entityMotionList[i].motion.pos.y}, 
+    //             posZ: ${body.entityMotionList[i].motion.pos.z}, 
+    //             rotX: ${body.entityMotionList[i].motion.rot.x},
+    //             rotY: ${body.entityMotionList[i].motion.rot.x},
+    //             rotZ: ${body.entityMotionList[i].motion.rot.x},
+    //             `
+    //         )
     //     }
     // }  
     const proto: starrail.SceneEntityMoveScRsp = new starrail.SceneEntityMoveScRsp({

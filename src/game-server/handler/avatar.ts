@@ -89,30 +89,38 @@ export async function onGetAvatarDataCsReq(
 
             switch (avatarConf.id) {
                 case 8001:
-                    avatarType = starrail.MultiPathAvatarType.BoyWarriorType
+                    avatarType = starrail.MultiPathAvatarType.BoyWarriorType;
+                    break;
                 case 8002:
-                    avatarType = starrail.MultiPathAvatarType.GirlWarriorType
+                    avatarType = starrail.MultiPathAvatarType.GirlWarriorType;
+                    break;
                 case 8003:
-                    avatarType = starrail.MultiPathAvatarType.BoyKnightType
+                    avatarType = starrail.MultiPathAvatarType.BoyKnightType;
+                    break;
                 case 8004:
-                    avatarType = starrail.MultiPathAvatarType.GirlKnightType
+                    avatarType = starrail.MultiPathAvatarType.GirlKnightType;
+                    break;
                 case 8005:
-                    avatarType = starrail.MultiPathAvatarType.BoyShamanType
+                    avatarType = starrail.MultiPathAvatarType.BoyShamanType;
+                    break;
                 case 8006:
                     avatarType = starrail.MultiPathAvatarType.GirlShamanType;
+                    break;
                 case 1224:
                     avatarType = starrail.MultiPathAvatarType.Mar_7thRogueType;
+                    break;
                 case 1001:
                     avatarType = starrail.MultiPathAvatarType.Mar_7thKnightType;
+                    break;
                 default:
                     avatarType = starrail.MultiPathAvatarType.MultiPathAvatarTypeNone;
+                    break;
             }
 
             const proto1 = new starrail.SetAvatarPathScRsp({
                 retcode: 0,
                 avatarId: avatarType
             });
-            console.log("path : ", avatarType)
             const bufferData1 = starrail.SetAvatarPathScRsp.encode(proto1).finish();
             await player.send(CmdID.CmdSetAvatarPathScRsp, bufferData1);
         }
