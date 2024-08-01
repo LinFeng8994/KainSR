@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package starrail;
 
-enum AvatarSlotType {
+enum AvatarSlotType {equipRelicList
     AVATAR_SLOT_1 = 0;
     AVATAR_SLOT_2 = 1;
     AVATAR_SLOT_3 = 2;
@@ -9912,7 +9912,7 @@ message IBNODOMPLAI {
 }
 message ICBKGOHCANP {
 }
-message BattleRelic {
+message AvatarIdList  {
 	uint32 id = 1; // Token: 0x4000299;
 	uint32 level = 2; // Token: 0x400029B;
 	uint32 main_affix_id = 3; // Token: 0x400029D;

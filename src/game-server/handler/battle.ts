@@ -77,14 +77,14 @@ export async function onStartCocoonStageCsReq(
             const targetIndexList = [];
             targetIndexList.push(0);
             const buff = new starrail.BattleBuff({
-                id: 121401,
+                id: tmpAvatar.id == 1310 ?  131002 : 121401,
                 level: 1,
                 ownerIndex: i,
-                waveFlag: 1,
+                waveFlag: 0xffffffff,
                 targetIndexList: targetIndexList,
                 dynamicValues: {},
             });
-            buff.dynamicValues["SkillIndex"] = 0 ;
+            buff.dynamicValues["SkillIndex"] = 2.0 ;
             battle.buffList.push(buff);
         }
 
@@ -122,7 +122,7 @@ export async function onStartCocoonStageCsReq(
             targetIndexList: targetIndexList,
             dynamicValues: {},
         });
-        buff.dynamicValues["SkillIndex"] =0;
+        buff.dynamicValues["SkillIndex"] = 0;
         battle.buffList.push(buff);
     }
 
