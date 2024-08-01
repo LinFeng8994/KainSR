@@ -13,7 +13,6 @@ export class HttpServerController {
         return data
     }
         
-
     @Get("/query_gateway")
     async getGateway(@Query("version") version : string) {
         return await this.httpServerService.getGatewayService(version);
@@ -38,6 +37,11 @@ export class HttpServerController {
     async riskyApiCheck() {
         return await this.httpServerService.riskyApiCheckService();
     }
+    // @Post("/account/ma-cn-passport/app/loginByPassword")
+    // async loginWithPassport() {
+    //     return await this.httpServerService.loginWithPassportService()
+    // }
+
 
     // session login
     @Get("/:product_name/combo/granter/api/getConfig")

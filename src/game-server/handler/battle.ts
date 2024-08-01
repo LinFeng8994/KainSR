@@ -77,14 +77,14 @@ export async function onStartCocoonStageCsReq(
             const targetIndexList = [];
             targetIndexList.push(0);
             const buff = new starrail.BattleBuff({
-                id: tmpAvatar.id == 1310 ?  131002 : 121401,
+                id: 121401,
                 level: 1,
                 ownerIndex: i,
-                waveFlag: 0xffffffff,
+                waveFlag: 1,
                 targetIndexList: targetIndexList,
                 dynamicValues: {},
             });
-            buff.dynamicValues["SkillIndex"] = 2.0 ;
+            buff.dynamicValues["SkillIndex"] = 0 ;
             battle.buffList.push(buff);
         }
 
@@ -95,8 +95,8 @@ export async function onStartCocoonStageCsReq(
     battle.battleId = jsonData.battle_config.battle_id;
     battle.stageId = jsonData.battle_config.stage_id;
     battle.logicRandomSeed = Math.floor(Date.now() % 0xFFFFFFFF);
-    battle.HOFFCBLNFNG = jsonData.battle_config.cycle_count;
-    battle.BOJHPNCAKOP = jsonData.battle_config.monster_wave.length;
+    battle.cycleCount = jsonData.battle_config.cycle_count;
+    battle.monsterWaveLength = jsonData.battle_config.monster_wave.length;
 
     // Monster handler
     for (const wave of jsonData.battle_config.monster_wave) {
@@ -122,7 +122,7 @@ export async function onStartCocoonStageCsReq(
             targetIndexList: targetIndexList,
             dynamicValues: {},
         });
-        buff.dynamicValues["SkillIndex"] = 0;
+        buff.dynamicValues["SkillIndex"] =0;
         battle.buffList.push(buff);
     }
 
@@ -133,16 +133,16 @@ export async function onStartCocoonStageCsReq(
     // Target hardcode
     const pfTargetHead = new starrail.BattleTargetList();
     pfTargetHead.KNBBHOJNOFF = [];
-    pfTargetHead.KNBBHOJNOFF.push(new starrail.BattleTarget({ Id: 10002, Progress: 0, TotalProgress: 0 }));
+    pfTargetHead.KNBBHOJNOFF.push(new starrail.BattleTarget({ id: 10002, progress: 0, totalProgress: 0 }));
 
     const pfTargetTail = new starrail.BattleTargetList();
     pfTargetTail.KNBBHOJNOFF = [];
-    pfTargetTail.KNBBHOJNOFF.push(new starrail.BattleTarget({ Id: 2001, Progress: 0, TotalProgress: 0 }));
-    pfTargetTail.KNBBHOJNOFF.push(new starrail.BattleTarget({ Id: 2002, Progress: 0, TotalProgress: 0 }));
+    pfTargetTail.KNBBHOJNOFF.push(new starrail.BattleTarget({ id: 2001, progress: 0, totalProgress: 0 }));
+    pfTargetTail.KNBBHOJNOFF.push(new starrail.BattleTarget({ id: 2002, progress: 0, totalProgress: 0 }));
 
     const asTargetHead = new starrail.BattleTargetList();
     asTargetHead.KNBBHOJNOFF = [];
-    asTargetHead.KNBBHOJNOFF.push(new starrail.BattleTarget({ Id: 90005, Progress: 0, TotalProgress: 0 }));
+    asTargetHead.KNBBHOJNOFF.push(new starrail.BattleTarget({ id: 90005, progress: 0, totalProgress: 0 }));
 
     switch (battle.stageId) {
         // PF
@@ -174,18 +174,17 @@ export async function onStartCocoonStageCsReq(
     }
 
     const startCocoonStageScRsp = new starrail.StartCocoonStageScRsp({
-        Retcode: 0,
-        CocoonId: body.cocoonId,
-        PropEntityId: body.propEntityId,
-        Wave: body.wave,
-        BattleInfo: battle,
+        retcode: 0,
+        cocoonId: body.cocoonId,
+        propEntityId: body.propEntityId,
+        wave: body.wave,
+        battleInfo: battle,
     });
 
     const bufferData = starrail.StartCocoonStageScRsp.encode(startCocoonStageScRsp).finish();
 
     await session.send(CmdID.CmdStartCocoonStageScRsp, bufferData);
 }
-
 
 export async function onPVEBattleResultCsReq(
     body: starrail.PVEBattleResultCsReq,

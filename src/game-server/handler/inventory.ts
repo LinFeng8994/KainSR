@@ -19,24 +19,24 @@ export async function onGetBagCsReq (
     for (const avatarConf of jsonData.avatar_config) {
         const lightcone = new starrail.Equipment({
             uniqueId: genId.nextId(),
-            APAMKMIGAOP: avatarConf.lightcone.id,
+            id: avatarConf.lightcone.id,
             isProtected: true,
             level: avatarConf.lightcone.level,
             rank: avatarConf.lightcone.rank,
             promotion: avatarConf.lightcone.promotion,
-            OKMNCEFGIMF: avatarConf.id
+            charId: avatarConf.id
         })
 
         proto.equipmentList.push(lightcone)
 
         for (const relic of avatarConf.relics) {
             const tmpRelic : starrail.Relic= new starrail.Relic({
-                APAMKMIGAOP : relic.id, // tid
+                id : relic.id, // tid
                 mainAffixId : relic.main_affix_id,
                 uniqueId : genId.nextId(),
                 exp : 0,
-                OKMNCEFGIMF : avatarConf.id, // base avatar id
-                HDHDLMJIFAO : true, // lock
+                charId : avatarConf.id, // base avatar id
+                MIDLNAIGNCG : true, // lock
                 level : relic.level,
                 subAffixList: []
             });

@@ -20,10 +20,10 @@ export async function onGetFriendListInfoCsReq(
             level: 70,
             uid: 13341334,
             assistSimpleInfoList: [{
-                AvatarId: 1310,
-                Level: 80,
-                DressedSkinId: 0,
-                Pos: 0
+                avatarId: 1310,
+                level: 80,
+                dressedSkinId: 0,
+                pos: 0
             }],
             platform: starrail.PlatformType.PC,
             onlineStatus: starrail.FriendOnlineStatus.FRIEND_ONLINE_STATUS_ONLINE

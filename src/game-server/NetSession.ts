@@ -17,7 +17,11 @@ import {
     onReplaceLineupCsReq,
     onGetBagCsReq,
     onGetFriendListInfoCsReq,
-    onSendMsgCsReq
+    onSendMsgCsReq,
+    onGetBasicInfoCsReq,
+    onGetTutorialGuideCsReq,
+    onGetTutorialCsReq,
+    onGetAllLineupDataCsReq
 } from "./handler"
 import { starrail } from "src/proto/starrail";
 import { DataService } from "src/data/data.service";
@@ -42,19 +46,18 @@ export class NetSession {
     private socketClient: Socket;
     private dataService: DataService;
     private HandlerList: HandlerPair[];
-    private DummyList: CommandPair[];
     private TypeList = {
-        58 : starrail.PlayerGetTokenCsReq,
-        18: starrail.PlayerLoginCsReq,
-        33: starrail.PlayerHeartBeatCsReq,
-        318: starrail.GetAvatarDataCsReq,
-        1248: starrail.GetMissionStatusCsReq,
-        1418: starrail.SceneEntityMoveCsReq,
-        118: starrail.PVEBattleResultCsReq,
-        1456: starrail.StartCocoonStageCsReq,
-        711: starrail.IPAGJPHJDBD,
-        798: starrail.ChangeLineupLeaderScRsp,
-        3918: starrail.SendMsgCsReq
+        [CmdID.CmdPlayerGetTokenCsReq]: starrail.PlayerGetTokenCsReq,
+        [CmdID.CmdPlayerLoginCsReq]: starrail.PlayerLoginCsReq,
+        [CmdID.CmdPlayerHeartBeatCsReq]: starrail.PlayerHeartBeatCsReq,
+        [CmdID.CmdGetAvatarDataCsReq]: starrail.GetAvatarDataCsReq,
+        [CmdID.CmdGetMissionStatusCsReq]: starrail.GetMissionStatusCsReq,
+        [CmdID.CmdSceneEntityMoveCsReq]: starrail.SceneEntityMoveCsReq,
+        [CmdID.CmdPVEBattleResultCsReq]: starrail.PVEBattleResultCsReq,
+        [CmdID.CmdStartCocoonStageCsReq]: starrail.StartCocoonStageCsReq,
+        [CmdID.CmdReplaceLineupCsReq]: starrail.ReplaceLineupCsReq,
+        [CmdID.CmdChangeLineupLeaderScRsp]: starrail.ChangeLineupLeaderScRsp,
+        [CmdID.CmdSendMsgCsReq]: starrail.SendMsgCsReq
     }
     constructor(socketClient: Socket, dataService: DataService) {
         this.dataService = dataService;
@@ -76,55 +79,15 @@ export class NetSession {
             { cmdID: CmdID.CmdGetBagCsReq, action: onGetBagCsReq },
             { cmdID: CmdID.CmdGetFriendListInfoCsReq, action: onGetFriendListInfoCsReq },
             { cmdID: CmdID.CmdSendMsgCsReq, action: onSendMsgCsReq },
-   
-
+            { cmdID: CmdID.CmdGetBasicInfoCsReq, action: onGetBasicInfoCsReq },
+            { cmdID: CmdID.CmdGetTutorialGuideCsReq, action: onGetTutorialGuideCsReq },
+            { cmdID: CmdID.CmdGetTutorialCsReq, action: onGetTutorialCsReq },
+            { cmdID: CmdID.CmdGetAllLineupDataCsReq, action: onGetAllLineupDataCsReq },
           ];
-        this.DummyList = [
-            { req: CmdID.CmdGetBasicInfoCsReq, rsp: CmdID.CmdGetBasicInfoScRsp },
-            { req: CmdID.CmdGetMultiPathAvatarInfoCsReq, rsp: CmdID.CmdGetMultiPathAvatarInfoScRsp },
-            // { req: CmdID.CmdGetBagCsReq, rsp: CmdID.CmdGetBagScRsp },
-            { req: CmdID.CmdGetMarkItemListCsReq, rsp: CmdID.CmdGetMarkItemListScRsp },
-            { req: CmdID.CmdGetPlayerBoardDataCsReq, rsp: CmdID.CmdGetPlayerBoardDataScRsp },
-            { req: CmdID.CmdGetCurAssistCsReq, rsp: CmdID.CmdGetCurAssistScRsp },
-            { req: CmdID.CmdGetAllLineupDataCsReq, rsp: CmdID.CmdGetAllLineupDataScRsp },
-            { req: CmdID.CmdGetAllServerPrefsDataCsReq, rsp: CmdID.CmdGetAllServerPrefsDataScRsp },
-            { req: CmdID.CmdGetActivityScheduleConfigCsReq, rsp: CmdID.CmdGetActivityScheduleConfigScRsp },
-            { req: CmdID.CmdGetMissionDataCsReq, rsp: CmdID.CmdGetMissionDataScRsp },
-            { req: CmdID.CmdGetMissionEventDataCsReq, rsp: CmdID.CmdGetMissionEventDataScRsp },
-            { req: CmdID.CmdGetQuestDataCsReq, rsp: CmdID.CmdGetQuestDataScRsp },
-            { req: CmdID.CmdGetCurChallengeCsReq, rsp: CmdID.CmdGetCurChallengeScRsp },
-            { req: CmdID.CmdGetRogueCommonDialogueDataCsReq, rsp: CmdID.CmdGetRogueCommonDialogueDataScRsp },
-            { req: CmdID.CmdGetRogueInfoCsReq, rsp: CmdID.CmdGetRogueInfoScRsp },
-            { req: CmdID.CmdGetRogueHandbookDataCsReq, rsp: CmdID.CmdGetRogueHandbookDataScRsp },
-            { req: CmdID.CmdGetRogueEndlessActivityDataCsReq, rsp: CmdID.CmdGetRogueEndlessActivityDataScRsp },
-            { req: CmdID.CmdChessRogueQueryCsReq, rsp: CmdID.CmdChessRogueQueryScRsp },
-            { req: CmdID.CmdRogueTournQueryCsReq, rsp: CmdID.CmdRogueTournQueryScRsp },
-            { req: CmdID.CmdSyncClientResVersionCsReq, rsp: CmdID.CmdSyncClientResVersionScRsp },
-            { req: CmdID.CmdDailyFirstMeetPamCsReq, rsp: CmdID.CmdDailyFirstMeetPamScRsp },
-            { req: CmdID.CmdGetBattleCollegeDataCsReq, rsp: CmdID.CmdGetBattleCollegeDataScRsp },
-            { req: CmdID.CmdGetNpcStatusCsReq, rsp: CmdID.CmdGetNpcStatusScRsp },
-            { req: CmdID.CmdGetSecretKeyInfoCsReq, rsp: CmdID.CmdGetSecretKeyInfoScRsp },
-            { req: CmdID.CmdGetHeartDialInfoCsReq, rsp: CmdID.CmdGetHeartDialInfoScRsp },
-            { req: CmdID.CmdGetVideoVersionKeyCsReq, rsp: CmdID.CmdGetVideoVersionKeyScRsp },
-            { req: CmdID.CmdGetCurBattleInfoCsReq, rsp: CmdID.CmdGetCurBattleInfoScRsp },
-            { req: CmdID.CmdHeliobusActivityDataCsReq, rsp: CmdID.CmdHeliobusActivityDataScRsp },
-            { req: CmdID.CmdGetEnteredSceneCsReq, rsp: CmdID.CmdGetEnteredSceneScRsp },
-            { req: CmdID.CmdGetAetherDivideInfoCsReq, rsp: CmdID.CmdGetAetherDivideInfoScRsp },
-            { req: CmdID.CmdGetMapRotationDataCsReq, rsp: CmdID.CmdGetMapRotationDataScRsp },
-            { req: CmdID.CmdGetRogueCollectionCsReq, rsp: CmdID.CmdGetRogueCollectionScRsp },
-            { req: CmdID.CmdGetRogueExhibitionCsReq, rsp: CmdID.CmdGetRogueExhibitionScRsp },
-            { req: CmdID.CmdPlayerReturnInfoQueryCsReq, rsp: CmdID.CmdPlayerReturnInfoQueryScRsp },
-            { req: CmdID.CmdPlayerLoginFinishCsReq, rsp: CmdID.CmdPlayerLoginFinishScRsp },
-            { req: CmdID.CmdGetLevelRewardTakenListCsReq, rsp: CmdID.CmdGetLevelRewardTakenListScRsp },
-            { req: CmdID.CmdGetMainMissionCustomValueCsReq, rsp: CmdID.CmdGetMainMissionCustomValueScRsp },
-            { req: CmdID.CmdGetArchiveDataCsReq, rsp: CmdID.CmdGetArchiveDataScRsp },
-            { req: CmdID.CmdDressAvatarCsReq, rsp: CmdID.CmdDressAvatarScRsp },
-            { req: CmdID.CmdTakeOffEquipmentCsReq, rsp: CmdID.CmdTakeOffEquipmentScRsp },
-            { req: CmdID.CmdRelicRecommendCsReq, rsp: CmdID.CmdRelicRecommendScRsp },
-        ];
     }
 
     public async run() {
+        console.log("Player connected to server")
         while (true) {
             const netPacket = await NetPacket.read(this.socketClient);
             if (!netPacket) {
@@ -138,19 +101,28 @@ export class NetSession {
     private async onMessage(cmd_type: number, payload: Uint8Array): Promise<void> {
         const handlerFind = this.HandlerList.find(handler => handler.cmdID == cmd_type);
         if (handlerFind) {
-            console.log(`Valid command found ${cmd_type}`)
-            if (this.TypeList[cmd_type]) {
-                const dataReq = this.TypeList[cmd_type].decode(payload);
+            const commandType = this.TypeList[cmd_type];
+            if (commandType) {
+                console.log(`Valid command found: ${cmd_type}`);
+                const dataReq = commandType.decode(payload);
                 await handlerFind.action(dataReq, this, this.dataService);
-            }
+            } 
             else {
+                console.warn(`Unknown command type: ${cmd_type}`);
                 await handlerFind.action({}, this, this.dataService);
             }
         }
-        const cmdFind = this.DummyList.find(handler => handler.req == cmd_type);
-        if (cmdFind) {
-            console.log(`Dummy command found ${cmdFind.req} to ${cmdFind.rsp}`)
-            await this.send_empty(cmdFind.rsp);
+        else {
+            const cmdKey = Object.keys(CmdID).find(key => CmdID[key] === cmd_type)
+            if (cmdKey) {
+                const responseKey = cmdKey.replace('CsReq', 'ScRsp');
+                if (CmdID.hasOwnProperty(responseKey)) {
+                    const responseCmdID = CmdID[responseKey];
+                    console.log(`Dummy command found: ${cmd_type} -> ${responseCmdID}`);
+                    await this.send_empty(responseCmdID);
+                }
+
+            }
         }
     }
 

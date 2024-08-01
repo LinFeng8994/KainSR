@@ -13,6 +13,7 @@ export async function onPlayerGetTokenCsReq(
         retcode: 0,
         msg: "OK",
         uid: 1334,
+        secretKeySeed: 0
     });
 
     const bufferData = starrail.PlayerGetTokenScRsp.encode(proto).finish()
@@ -26,6 +27,7 @@ export async function onPlayerLoginCsReq(
     dataModule: any | null = null
 ): Promise<void> {
     const proto: starrail.PlayerLoginScRsp = new starrail.PlayerLoginScRsp({
+        retcode: 0,
         loginRandom: body.loginRandom,
         serverTimestampMs: new Long(new Date().getTime()),
         stamina: 240,
@@ -33,7 +35,7 @@ export async function onPlayerLoginCsReq(
             nickname: "KainSR",
             level: 70,
             worldLevel: 6,
-            stamina: 240,
+            stamina: 100,
         },
       });
     const bufferData = starrail.PlayerLoginScRsp.encode(proto).finish()

@@ -7,23 +7,24 @@ export async function onGetCurSceneInfoCsReq(
     player: NetSession,
     dataModule: any | null = null
 ) {
-    const scene_info : starrail.SceneInfo = new starrail.SceneInfo()
+    const scene_info: starrail.SceneInfo = new starrail.SceneInfo()
     scene_info.gameModeType = 1;
     scene_info.planeId = 20313;
     scene_info.floorId = 20313001;
     scene_info.entryId = 2031301;
+    // scene_info.JNCGAINGMMM = 1;
 
     { // Character
         const scene_group: starrail.SceneGroupInfo = new starrail.SceneGroupInfo()
         scene_group.state = 1;
         scene_group.entityList.push(new starrail.SceneEntityInfo({
-            Actor: {
+            actor: {
                 baseAvatarId: 1221,
                 avatarType: starrail.AvatarType.AVATAR_FORMAL_TYPE,
                 uid: 1337,
                 mapLayer: 2
             },
-            Motion: {
+            motion: {
                 pos: {
                     x: 32342,
                     y: 192820,
@@ -45,17 +46,18 @@ export async function onGetCurSceneInfoCsReq(
         prop.propState = 1;
 
         scene_group.entityList.push(new starrail.SceneEntityInfo({
-            GroupId: 186,
-            InstId: 300001,
-            EntityId: 186,
-            Prop: prop,
-            Motion: {
+            groupId: 186,
+            instId: 300001,
+            entityId: 186,
+            prop: prop,
+            motion: {
                 pos: {
                     x: 31440,
                     y: 192820,
                     z: 433790
                 },
-                rot: {}
+                rot: {
+                }
             }
         }))
 
@@ -68,6 +70,7 @@ export async function onGetCurSceneInfoCsReq(
     const bufferData = starrail.GetCurSceneInfoScRsp.encode(proto).finish()
     await player.send(CmdID.CmdGetCurSceneInfoScRsp, bufferData);
 }
+
 
 export async function onSceneEntityMoveCsReq(
     body: starrail.SceneEntityMoveCsReq | any,

@@ -7,10 +7,10 @@ import { GameConfig } from 'src/data/loadConfig';
 import { DataService } from 'src/data/data.service';
 
 const UNLOCKED_AVATARS: number[] = [
-    1001, 1002, 1003, 1004, 1005, 1006, 1008, 1009, 1013, 1101, 1102, 1103, 1104, 1105, 1106, 1107,
-    1108, 1109, 1110, 1111, 1112, 1201, 1202, 1203, 1204, 1205, 1206, 1207, 1208, 1209, 1210, 1211,
-    1212, 1213, 1214, 1215, 1217, 1301, 1302, 1303, 1304, 1305, 1306, 1307, 1308, 1309, 1310, 1312,
-    1314, 1315, 1221, 1218, 8001,
+    1001, 1002, 1003, 1004, 1005, 1006, 1008, 1009, 1013, 1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1109,
+    1110, 1111, 1112, 1201, 1202, 1203, 1204, 1205, 1206, 1207, 1208, 1209, 1210, 1211, 1212, 1213, 1214,
+    1215, 1217, 1301, 1302, 1303, 1304, 1305, 1306, 1307, 1308, 1309, 1310, 1312, 1314, 1315, 1221, 1218,
+    1220, 1222, 1223, 
 ];
 
 export async function onGetAvatarDataCsReq(
@@ -154,7 +154,7 @@ export async function onGetAvatarDataCsReqNew(
             level: 80,
             promotion: 6,
             rank: 6,
-            // hasTakenRewardLevelList: Array.from({ length: 5 }, (_, index) => index + 1)
+            hasTakenRewardLevelList: Array.from({ length: 5 }, (_, index) => index + 1)
         });
         avatar_list.push(avatar);
     }
