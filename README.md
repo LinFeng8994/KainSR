@@ -38,7 +38,7 @@ $ run file run.bat
 ```
 
 # 2, Manual Case:
-## 2.1 Proxy
+## 2.1 Install
 ```bash
 $ npm install
 ```
