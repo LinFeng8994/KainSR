@@ -26,26 +26,28 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+# 1. Auto Case:
 
+## 1.1, Auto case install:
 ```bash
-$ npm install
+$ run file install.bat
 ```
-
-## 1, Auto case:
+## 12, Auto case run:
 ```bash
 $ run file run.bat
 ```
 
-## 2, Manual Case:
-
+# 2, Manual Case:
 ## 2.1 Proxy
+```bash
+$ npm install
+```
+## 2.2 Proxy
 
 ```bash
 $ you need run FireflySR.Tool.Proxy.exe in FireFly.Proxy.v2
 ```
-
-## 2.2 Running the app
+## 2.3 Running the app
 
 ```bash
 # development
@@ -57,7 +59,17 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+# 3. Set up config:
+## 3.1 Update new config.json
 
+```bash
+$ you can update the new config.json in src/data
+```
+## 3.2 Update new data in-game
+
+```bash
+$ you can type /update in-game to update new data from the new config.json
+```
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
