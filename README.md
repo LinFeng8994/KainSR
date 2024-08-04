@@ -25,6 +25,11 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# For auto native with another version of game 2.4.x::
+```bash
+$ Move folder StarRail_2.4.x to KainSR
+```
+![image](https://github.com/user-attachments/assets/9aa412ea-df77-47b3-91ec-b5a4817561d9)
 
 # 1. Auto Case:
 
