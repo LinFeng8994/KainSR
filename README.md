@@ -37,10 +37,12 @@ $ Move folder StarRail_2.4.x to KainSR
 ```bash
 $ run file install.bat
 ```
-## 12, Auto case run:
+## 1.2, Auto case run:
 ```bash
 $ run file run.bat
 ```
+### Note: You need to wait for the server started fully like this:
+![image](https://github.com/user-attachments/assets/be0b33f2-df35-4435-bfd0-a95b55b85e7e)
 
 # 2, Manual Case:
 ## 2.1 Install
